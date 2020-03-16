@@ -6,12 +6,12 @@
 	<div class="card-body">
 		<nav>
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<a class="nav-item nav-link active" id="nav-master-tab" data-toggle="tab" href="#nav-master" role="tab" aria-controls="nav-master" aria-selected="true">Master Customer</a>
-				<a class="nav-item nav-link" id="nav-formulir-tab" data-toggle="tab" href="#nav-formulir" role="tab" aria-controls="nav-formulir" aria-selected="false">Register Customer</a>
+				<a class="nav-item nav-link <?php echo $this->uri->segment(2) == '' ? 'active': '' ?>" id="nav-master-tab" data-toggle="tab" href="#nav-master" role="tab" aria-controls="nav-master" aria-selected="true">Master Customer</a>
+				<a class="nav-item nav-link <?php echo $this->uri->segment(2) == 'create' ? 'active': '' ?>" id="nav-formulir-tab" data-toggle="tab" href="#nav-formulir" role="tab" aria-controls="nav-formulir" aria-selected="false">Formulir Customer</a>
 			</div>
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
-			<div class="tab-pane fade show active" id="nav-master" role="tabpanel" aria-labelledby="nav-master-tab">
+			<div class="tab-pane fade show <?php echo $this->uri->segment(2) == '' ? 'active': '' ?>" id="nav-master" role="tabpanel" aria-labelledby="nav-master-tab">
 				<div class="table-responsive mt-3 mb-3">
 					<table class="table table-borderless table-hover" id="masteruser" width="100%" cellspacing="0">
 						<thead>
@@ -25,160 +25,125 @@
 								<th>Options</th>
 							</tr>
 						</thead>
-						<tr>
-							<td>12032020004</td>
-							<td>ADE RAHMAT NURDIYANA</td>
-							<td>ade.nurdiyana@gmail.com</td>
-							<td>087776451664</td>
-							<td>12/03/2020</td>
-							<td><span class="badge badge-success">aktif</span></td>
-							<td>
-								<button href="<?php echo site_url('user/edit/') ?>" class="btn btn-circle btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail customer">
-									<i class="fad fa-user-cog"></i>
-								</button>
-								<button href="<?php echo site_url('user/edit/') ?>" class="btn btn-circle btn-sm btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit customer">
-									<i class="fas fa-user-edit"></i>
-								</button>
-								<button onclick="deleteConfirm('<?=site_url('barang/delete/')?>')" href="#!" class="btn btn-circle btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus customer">
-									<i class="fas fa-user-minus"></i>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>12032020005</td>
-							<td>GINA NURHAMIDAH</td>
-							<td>gingin.hamham@gmail.com</td>
-							<td>081326433664</td>
-							<td>29/03/2020</td>
-							<td><span class="badge badge-danger">nonaktif</span></td>
-							<td>
-								<button href="<?php echo site_url('user/edit/') ?>" class="btn btn-circle btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail customer">
-									<i class="fad fa-user-cog"></i>
-								</button>
-								<button href="<?php echo site_url('user/edit/') ?>" class="btn btn-circle btn-sm btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit customer">
-									<i class="fas fa-user-edit"></i>
-								</button>
-								<button onclick="deleteConfirm('<?=site_url('barang/delete/')?>')" href="#!" class="btn btn-circle btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus customer">
-									<i class="fas fa-user-minus"></i>
-								</button>
-							</td>
-						</tr>
-							<!-- <tbody>
-								<?php $no=1;
-								foreach ($barang as $dt) :?>
-									<tr>
-										<td><?php echo $no++ ?></td>
-										<td><?php echo strtoupper($dt->KodeBarang)  ?></td>
-										<td><?php echo strtoupper($dt->NamaBarang) ?></td>
-										<td><?php echo strtoupper($dt->Qty) ?></td>
-										<td><?php echo strtoupper($dt->Box) ?></td>
-										<td><?php echo strtoupper($dt->Label) ?></td>
-										<td><a href="<?php echo site_url('barang/update/'.$dt->IdBarang) ?>"
-											class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+						<tbody>
+							<?php 
+							foreach ($customer as $dt) :?>
+								<tr>
+									<td><?php echo strtoupper($dt->NoPelanggan)?></td>
+									<td><?php echo strtoupper($dt->NamaPelanggan)?></td>
+									<td><?php echo strtoupper($dt->EmailPelanggan)?></td>
+									<td><?php echo strtoupper($dt->TelponPelanggan)?></td>
+									<td><?php echo strtoupper($dt->TglPasang)?></td>
+									<td><?php echo $dt->Status == '1' ? '<span class="badge badge-success">aktif</span>': '<span class="badge badge-danger">nonaktif</span>' ?></td>
+									<td>
+										<button href="<?php echo site_url('user/edit/') ?>" class="btn btn-circle btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail customer">
+											<i class="fad fa-user-cog"></i>
+										</button>
+										<button href="<?php echo site_url('user/edit/') ?>" class="btn btn-circle btn-sm btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit customer">
+											<i class="fas fa-user-edit"></i>
+										</button>
+										<button onclick="deleteConfirm('<?=site_url('barang/delete/')?>')" href="#!" class="btn btn-circle btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus customer">
+											<i class="fas fa-user-minus"></i>
+										</button>
+									</td>
+								</tr>
+							<?php endforeach ?>
+						</tbody>
+					</table>
 
-											<a onclick="deleteConfirm('<?=site_url('barang/delete/'.$dt->IdBarang)?>')" href="#!" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-											</td>
-										</tr>
-									<?php endforeach ?>
-								</tbody> -->
-							</table>
-
-						</div>
-						<div class="card-footer text-right text-gray-500">
-							<span>
-								<small>
-									Master customer GisakaNet pada tanggal <?=date('d/m/Y') ?>
-								</small>
-							</span>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="nav-formulir" role="tabpanel" aria-labelledby="nav-formulir-tab">
-						<form action="" method="post" class="mt-3">
-							<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash(); ?>">
-							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="fnik">Nomor Induk Karyawan</label>
-									<input type="text" class="form-control is-invalid " id="fnik" autofocus="on">
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="fnamadepan">Nama Depan</label>
-									<input type="text" class="form-control" id="fnamadepan">
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="fnamabelakang">Nama Belakang</label>
-									<input type="text" class="form-control" id="fnamabelakang">
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="fusername">Username</label>
-									<input type="text" class="form-control" id="fusername">
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="fpassword">Password</label>
-									<input type="password" class="form-control" id="fpassword">
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="fulangipassword">Ulangi Password</label>
-									<input type="password" class="form-control is-invalid" id="fulangipassword">
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="fwa">Whatsapp</label>
-									<input type="text" class="form-control is-invalid" id="fwa">
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="fshif">Group Shif</label>
-									<select id="fshif" class="form-control is-invalid">
-										<option selected>Pilih...</option>
-										<option>SHOCC01</option>
-										<option>SHOCC02</option>
-										<option>SHOCC03</option>
-										<option>SHOCC04</option>
-									</select>
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="fava">Avatar</label>
-									<input type="file" class="form-control-file" id="fava">
-									<span><small>*File size avatar tidak lebih dari 1Mb</small></span>
-									<div class="invalid-feedback">
-										Please choose a username.
-									</div>
-								</div>
-							</div>
-							<div class="card-footer text-right">
-								<button type="submit" class="btn btn-primary">
-									<i class="fad fa-paper-plane"></i>
-									Kirim
-								</button>
-							</div>
-						</form>
-					</div>
+				</div>
+				<div class="card-footer text-right text-gray-500">
+					<span>
+						<small>
+							Master customer GisakaNet pada tanggal <?=date('d/m/Y') ?>
+						</small>
+					</span>
 				</div>
 			</div>
+			<div class="tab-pane fade show <?php echo $this->uri->segment(2) == 'create' ? 'active': '' ?>" id="nav-formulir" role="tabpanel" aria-labelledby="nav-formulir-tab">
+				<form action="<?=base_url('customer/create') ?>" method="post" class="mt-3">
+					<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash(); ?>">
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="fnourut">Nomor Urut</label>
+							<input type="text" class="form-control" id="fnourut"  name="fnourut" value="<?=sprintf("%04s", $nopel)?>" readonly>
+						</div>
+						<div class="form-group col-md-8">
+							<label for="fnamapelanggan">Nama Pelanggan</label>
+							<input type="text" class="form-control <?=form_error('fnamapelanggan')?'is-invalid':''?>" id="fnamapelanggan" name="fnamapelanggan" value="<?=set_value('fnamapelanggan')?>" autofocus autocomplete="off">
+							<div class="invalid-feedback">
+								<?php echo form_error('fnamapelanggan'); ?>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="femail">Email Pelanggan</label>
+							<input type="email" class="form-control <?=form_error('femail')?'is-invalid':''?>" id="femail" name="femail" value="<?=set_value('femail')?>" autocomplete="off">
+							<div class="invalid-feedback">
+								<?php echo form_error('femail'); ?>
+							</div>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="fnohp">Handphone</label>
+							<input type="text" class="form-control <?=form_error('fnohp')?'is-invalid':''?>" id="fhp" name="fnohp" value="<?=set_value('fnohp')?>" autocomplete="off">
+							<div class="invalid-feedback">
+								<?php echo form_error('fnohp'); ?>
+							</div>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="ftglpasang">Tanggal Pasang</label>
+							<input type="date" class="form-control <?=form_error('ftglpasang')?'is-invalid':''?>" id="ftglpasang" name="ftglpasang" value="<?=set_value('ftglpasang')?>">
+							<div class="invalid-feedback">
+								<?php echo form_error('ftglpasang'); ?>
+							</div>
+						</div>
+
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-8">
+							<label for="falamat">Alamat Lengkap</label>
+							<textarea class="form-control <?=form_error('falamat')?'is-invalid':''?>" id="falamat" name="falamat"><?=set_value('falamat')?></textarea>
+							<div class="invalid-feedback">
+								<?php echo form_error('falamat'); ?>
+							</div>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="fpaket">Paket Internet</label>
+							<select id="fpaket" class="form-control <?php echo form_error('fpaket')?'is-invalid':''?>" name="fpaket">
+								<option selected hidden value="">Pilih Paket...</option>
+								<?php foreach ($paket as $dt) :?>
+									<option value="<?=$dt->IdPaket?>" <?=set_value('fpaket') == "$dt->IdPaket" ? "selected" : ''?>><?=ucfirst($dt->NamaPaket);?></option>
+								<?php endforeach ?>
+							</select>
+							<div class="invalid-feedback">
+								<?php echo form_error('fpaket'); ?>
+							</div>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Status Pelanggan</label>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="fstatus1" name="fstatus" class="custom-control-input <?php echo form_error('fstatus')?'is-invalid':''?>" value="1" <?=set_value('fstatus') == "1" ? "checked" : ''?>>
+								<label class="custom-control-label" for="fstatus1"><span class="badge badge-success">Aktif</span></label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="fstatus2" name="fstatus" class="custom-control-input <?php echo form_error('fstatus')?'is-invalid':''?>" value="0" <?=set_value('fstatus') == "0" ? "checked" : ''?>>
+								<label class="custom-control-label" for="fstatus2"><span class="badge badge-danger">Nonaktif</span></label>
+								<div class="invalid-feedback">
+									<?php echo form_error('fstatus'); ?>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<div class="card-footer text-right">
+						<button type="submit" class="btn btn-primary">
+							<i class="fad fa-paper-plane"></i>
+							Kirim
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
+	</div>
+</div>

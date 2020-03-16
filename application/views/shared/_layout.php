@@ -18,6 +18,8 @@
   <link href="<?=base_url().'assets/css/sb-admin-2.css'?>" rel="stylesheet">
   <!-- Custom styles datatables-->
   <link href="<?= base_url().'assets/vendor/datatables/jquery.dataTables.min.css'?>" rel="stylesheet">
+  <link href="<?= base_url().'assets/vendor/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'?>" rel="stylesheet">
+  <link href="<?= base_url().'assets/vendor/toastr/toastr.min.css'?>" rel="stylesheet">
 
   <!-- Bootstrap core JavaScript-->
   <script src="<?=base_url().'assets/vendor/jquery/jquery.min.js'?>"></script>
@@ -192,6 +194,8 @@
       <script src="<?=base_url().'assets/js/sb-admin-2.min.js'?>"></script>
       <!-- Custom scripts for datatables-->
       <script src="<?=base_url().'assets/vendor/datatables/jquery.dataTables.min.js'?>"></script>
+      <script src="<?=base_url().'assets/vendor/sweetalert2/sweetalert2.min.js'?>"></script>
+      <script src="<?=base_url().'assets/vendor/toastr/toastr.min.js'?>"></script>
     </body>
     </html>
 
@@ -214,17 +218,46 @@
       </div>
     </div>
     <script type="text/javascript">
-      $(document).ready(function() {
-        $('#masteruser').DataTable({
-          "language":{
-            "url":"<?php echo base_url().'assets/vendor/datatables/Indonesia.json'?>",
-            "sEmptyTable":"Tidak ada data"
-          }
+      $(function() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 10000
         });
-      } );
+        <?php if($this->session->flashdata('success')){ ?>
+          Toast.fire({
+            type: 'success',
+            title: '<?=$this->session->flashdata('success'); ?>'
+          });
+        <?php }else if($this->session->flashdata('error')){  ?>
+          Toast.fire({
+            type: 'error',
+            title: '<?=$this->session->flashdata('error'); ?>'
+          });
+        <?php }else if($this->session->flashdata('warning')){  ?>
+          Toast.fire({
+            type: 'warning',
+            title: '<?=$this->session->flashdata('warning'); ?>'
+          });
+        <?php }else if($this->session->flashdata('info')){  ?>
+          Toast.fire({
+            type: 'info',
+            title: '<?=$this->session->flashdata('info'); ?>'
+          });
+        <?php } ?>
+});
+        $(document).ready(function() {
+          $('#masteruser').DataTable({
+            "language":{
+              "url":"<?php echo base_url().'assets/vendor/datatables/Indonesia.json'?>",
+              "sEmptyTable":"Tidak ada data"
+            }
+          });
+        } );
 
-      function deleteConfirm(url){
-        $('#btn-delete').attr('href', url);
-        $('#deleteModal').modal();
-      }
-    </script>
+        function deleteConfirm(url){
+          $('#btn-delete').attr('href', url);
+          $('#deleteModal').modal();
+        }
+      </script>
