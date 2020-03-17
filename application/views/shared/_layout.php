@@ -52,7 +52,7 @@
       <!-- Nav Item - Dashboard -->
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-      <li class="nav-item <?php echo $this->uri->segment(1) == 'dashboard' ? 'active': '' ?>">
+      <li class="nav-item <?=$this->uri->segment(1) == 'dashboard' ? 'active': '' ?>">
         <a class="nav-link" href="<?=base_url('dashboard')?>">
           <i class="fad fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -63,8 +63,8 @@
         <div class="sidebar-heading">
           Main menu
         </div>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
+        <li class="nav-item <?=$this->uri->segment(1) == 'customer' ? 'active': '' ?>">
+          <a class="nav-link" href="<?=base_url('customer')?>">
             <i class="fad fa-users"></i>
             <span>Customers</span></a>
           </li>
@@ -77,6 +77,11 @@
             <a class="nav-link" href="#">
              <i class="fad fa-cubes"></i>
              <span>Inventory</span></a>
+           </li>
+           <li class="nav-item <?=$this->uri->segment(1) == 'paket' ? 'active': '' ?>">
+            <a class="nav-link" href="<?=base_url('paket')?>">
+             <i class="fas fa-box-open"></i>
+             <span>Paket</span></a>
            </li>
            <!-- Divider -->
            <hr class="sidebar-divider d-none d-md-block">

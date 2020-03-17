@@ -66,7 +66,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="fnourut">Nomor Urut</label>
-							<input type="text" class="form-control" id="fnourut"  name="fnourut" value="<?=sprintf("%04s", $nopel)?>" readonly>
+							<input type="text" class="form-control" id="fnourut"  name="fnourut" value="<?=sprintf("%03s", $nopel)?>" readonly>
 						</div>
 						<div class="form-group col-md-8">
 							<label for="fnamapelanggan">Nama Pelanggan</label>

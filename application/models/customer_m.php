@@ -58,10 +58,11 @@ class Customer_m extends CI_Model {
 	{
 		$post = $this->security->xss_clean($this->input->post());
 		$tglpasang=explode("-",$post['ftglpasang']);
-		$nopel=implode("", $tglpasang);
+		$nopel1=$tglpasang['0'];
+		$nopel2=$tglpasang['1'];
 		$this->IdPelanggan = uniqid('CS');
 		$this->NoUrut = $post['fnourut'];
-		$this->NoPelanggan = $nopel.$post['fnourut'];
+		$this->NoPelanggan = $nopel1.$nopel2.$post['fnourut'];
 		$this->NamaPelanggan = $post['fnamapelanggan'];
 		$this->AlamatPelanggan = $post['falamat'];
 		$this->TelponPelanggan = $post['fnohp'];
