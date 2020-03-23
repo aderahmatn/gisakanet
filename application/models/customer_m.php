@@ -105,7 +105,7 @@ class Customer_m extends CI_Model {
 
 	public function delete($id)
 	{
-		return $this->db->delete($this->_table, array('IdPelanggan' => $id));
+		return $this->db->delete($this->_table, array('IdPelanggan' => $id ));
 	}
 
 

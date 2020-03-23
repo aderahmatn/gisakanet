@@ -28,7 +28,6 @@
 						<tbody>
 							<?php
 							foreach ($customer as $dt) :?>
-
 								<tr>
 									<td><?php echo strtoupper($dt->NoPelanggan)?></td>
 									<td><?php echo strtoupper($dt->NamaPelanggan)?></td>
@@ -37,13 +36,13 @@
 									<td><?php echo strtoupper($dt->TglPasang)?></td>
 									<td><?php echo $dt->Status == '1' ? '<span class="badge badge-success">aktif</span>': '<span class="badge badge-danger">nonaktif</span>' ?></td>
 									<td>
-										<a href="<?=base_url('customer/detail/').$dt->IdPelanggan?>"><button class="btn btn-circle btn-sm btn-primary">
+										<a href="<?=base_url('customer/detail/').encrypt_url($dt->IdPelanggan)?>"><button class="btn btn-circle btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail customer">
 											<i class="fad fa-user-cog"></i>
 										</button></a>
-										<a href="<?=base_url('customer/update/').encrypt_url($dt->IdPelanggan)?>" class="btn btn-circle btn-sm btn-info" >
+										<a href="<?=base_url('customer/update/').encrypt_url($dt->IdPelanggan)?>" class="btn btn-circle btn-sm btn-info" data-toggle="tooltip" data-placement="bottom" title="Update customer">
 											<i class="fas fa-user-edit"></i>
 										</a>
-										<button onclick="deleteConfirm('<?=base_url('customer/delete/').$dt->IdPelanggan?>')" href="#!" class="btn btn-circle btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus customer">
+										<button onclick="deleteConfirm('<?=base_url('customer/delete/').encrypt_url($dt->IdPelanggan)?>')" href="#!" class="btn btn-circle btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus customer">
 											<i class="fas fa-user-minus"></i>
 										</button>
 									</td>

@@ -14,8 +14,6 @@ function encrypt_url($string) {
 
      */
 
-
-
     $security = parse_ini_file('security.ini');
 
     $secret_key = $security['encryption_key'];
@@ -23,7 +21,6 @@ function encrypt_url($string) {
     $secret_iv = $security['iv'];
 
     $encrypt_method = $security['encryption_mechanism'];
-
 
 
     // hash

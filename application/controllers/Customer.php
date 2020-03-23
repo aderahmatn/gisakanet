@@ -78,7 +78,7 @@ class Customer extends CI_Controller {
 
 	public function delete($id)
 	{
-		$this->customer_m->delete($id);
+		$this->customer_m->delete(decrypt_url($id));
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', 'Data customer berhasil dihapus!');
 			redirect('customer','refresh');
