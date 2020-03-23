@@ -1,6 +1,6 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-	<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">       
+	<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		<h6 class="m-0 font-weight-bold text-gray-900"><i class="fad fa-users"></i> Customers</h6>
 	</div>
 	<div class="card-body">
@@ -26,8 +26,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php 
+							<?php
 							foreach ($customer as $dt) :?>
+
 								<tr>
 									<td><?php echo strtoupper($dt->NoPelanggan)?></td>
 									<td><?php echo strtoupper($dt->NamaPelanggan)?></td>
@@ -36,13 +37,13 @@
 									<td><?php echo strtoupper($dt->TglPasang)?></td>
 									<td><?php echo $dt->Status == '1' ? '<span class="badge badge-success">aktif</span>': '<span class="badge badge-danger">nonaktif</span>' ?></td>
 									<td>
-										<button href="<?php echo site_url('user/edit/') ?>" class="btn btn-circle btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail customer">
+										<a href="<?=base_url('customer/detail/').$dt->IdPelanggan?>"><button class="btn btn-circle btn-sm btn-primary">
 											<i class="fad fa-user-cog"></i>
-										</button>
-										<button href="<?php echo site_url('user/edit/') ?>" class="btn btn-circle btn-sm btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit customer">
+										</button></a>
+										<a href="<?=base_url('customer/update/').encrypt_url($dt->IdPelanggan)?>" class="btn btn-circle btn-sm btn-info" >
 											<i class="fas fa-user-edit"></i>
-										</button>
-										<button onclick="deleteConfirm('<?=site_url('barang/delete/')?>')" href="#!" class="btn btn-circle btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus customer">
+										</a>
+										<button onclick="deleteConfirm('<?=base_url('customer/delete/').$dt->IdPelanggan?>')" href="#!" class="btn btn-circle btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus customer">
 											<i class="fas fa-user-minus"></i>
 										</button>
 									</td>
@@ -133,7 +134,7 @@
 									<?php echo form_error('fstatus'); ?>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 					<div class="card-footer text-right">

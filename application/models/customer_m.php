@@ -19,7 +19,7 @@ class Customer_m extends CI_Model {
 	public function rules()
 	{
 		return[
-			
+
 			['field' => 'fnamapelanggan',
 			'label' => 'Nama Pelanggan',
 			'rules' => 'required'],
@@ -74,14 +74,40 @@ class Customer_m extends CI_Model {
 	}
 
 	public function CheckNoPel()
-    {
-        $query = $this->db->query("SELECT MAX(NoUrut) as NoPel from pelanggan");
-        $hasil = $query->row();
-        $nomor = $hasil->NoPel;
-        // contoh JRD0004, angka 3 adalah awal pengambilan angka, dan 4 jumlah angka yang diambil
+	{
+		$query = $this->db->query("SELECT MAX(NoUrut) as NoPel from pelanggan");
+		$hasil = $query->row();
+		$nomor = $hasil->NoPel;
+		// contoh JRD0004, angka 3 adalah awal pengambilan angka, dan 4 jumlah angka yang diambil
 		$newnopel = $nomor + 1;
-        return $newnopel;
-    }
+		return $newnopel;
+	}
+
+	public function update($post)
+	{
+		$post = $this->input->post();
+		$this->IdPelanggan = $post['fidpel'];
+		$this->NoPelanggan = $post['fnopel'];
+		$this->NamaPelanggan = $post['fnamapelanggan'];
+		$this->AlamatPelanggan = $post['falamat'];
+		$this->TelponPelanggan = $post['fnohp'];
+		$this->EmailPelanggan = $post['femail'];
+		$this->IdPaket = $post['fpaket'];
+		$this->TglPasang = $post['ftglpasang'];
+		$this->Status = $post['fstatus'];
+		$this->db->update($this->_table, $this, array('IdPelanggan' => $post['fidpel']));
+	}
+
+	public function GetById($id)
+	{
+		return $this->db->get_where($this->_table,["IdPelanggan" => decrypt_url($id)])->row();
+	}
+
+	public function delete($id)
+	{
+		return $this->db->delete($this->_table, array('IdPelanggan' => $id));
+	}
+
 
 }
 
