@@ -30,7 +30,7 @@ class Customer_m extends CI_Model {
 
 			['field' => 'fnohp',
 			'label' => 'No Handphone Pelanggan',
-			'rules' => 'required|numeric'],
+			'rules' => 'required|numeric|max_length[12]'],
 
 			['field' => 'ftglpasang',
 			'label' => 'Tanggal Pasang',
@@ -45,6 +45,35 @@ class Customer_m extends CI_Model {
 			'rules' => 'required'],
 
 			['field' => 'fstatus',
+			'label' => 'Status Pelanggan',
+			'rules' => 'required']
+		];
+	}
+	public function rulesEdit()
+	{
+		return[
+
+			['field' => 'fnamapelangganedit',
+			'label' => 'Nama Pelanggan',
+			'rules' => 'required'],
+
+			['field' => 'femailedit',
+			'label' => 'Email Pelanggan',
+			'rules' => 'required|valid_email'],
+
+			['field' => 'fnohpedit',
+			'label' => 'No Handphone Pelanggan',
+			'rules' => 'required|numeric|max_length[12]'],
+
+			['field' => 'falamatedit',
+			'label' => 'Alamat Pelanggan',
+			'rules' => 'required'],
+
+			['field' => 'fpaketedit',
+			'label' => 'Paket Internet',
+			'rules' => 'required'],
+
+			['field' => 'fstatusedit',
 			'label' => 'Status Pelanggan',
 			'rules' => 'required']
 		];
@@ -85,17 +114,18 @@ class Customer_m extends CI_Model {
 
 	public function update($post)
 	{
-		$post = $this->input->post();
-		$this->IdPelanggan = $post['fidpel'];
+		$post = $this->security->xss_clean($this->input->post());
+		$this->IdPelanggan = decrypt_url($post['fidpel']);
 		$this->NoPelanggan = $post['fnopel'];
-		$this->NamaPelanggan = $post['fnamapelanggan'];
-		$this->AlamatPelanggan = $post['falamat'];
-		$this->TelponPelanggan = $post['fnohp'];
-		$this->EmailPelanggan = $post['femail'];
-		$this->IdPaket = $post['fpaket'];
-		$this->TglPasang = $post['ftglpasang'];
-		$this->Status = $post['fstatus'];
-		$this->db->update($this->_table, $this, array('IdPelanggan' => $post['fidpel']));
+		$this->NoUrut = $post['fnourutedit'];
+		$this->NamaPelanggan = $post['fnamapelangganedit'];
+		$this->AlamatPelanggan = $post['falamatedit'];
+		$this->TelponPelanggan = $post['fnohpedit'];
+		$this->EmailPelanggan = $post['femailedit'];
+		$this->IdPaket = $post['fpaketedit'];
+		$this->TglPasang = $post['ftglpasangedit'];
+		$this->Status = $post['fstatusedit'];
+		$this->db->update($this->_table, $this, array('IdPelanggan' => decrypt_url($post['fidpel'])));
 	}
 
 	public function GetById($id)

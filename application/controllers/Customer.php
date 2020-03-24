@@ -9,7 +9,7 @@ class Customer extends CI_Controller {
 		$this->load->model('paket_m');
 	}
 
-	public function index()
+	public function index($id=NULL)
 	{
 
 		$data['nopel']=$this->customer_m->CheckNoPel();
@@ -22,6 +22,7 @@ class Customer extends CI_Controller {
 	{
 		$this->form_validation->set_message('required','%s tidak boleh kosong!');
 		$this->form_validation->set_message('numeric','%s harus berupa angka!');
+		$this->form_validation->set_message('max_length','%s tidak boleh lebih dari 12 digit!');
 		$this->form_validation->set_message('valid_email','%s format email tidak valid!');
 		$customer = $this->customer_m;
 		$validation = $this->form_validation;
@@ -45,16 +46,16 @@ class Customer extends CI_Controller {
 		}
 	}
 
-	public function update($id)
+	public function update($id=NULL)
 	{
 		if (!isset($id)) redirect('customer');
-
 		$this->form_validation->set_message('required','%s tidak boleh kosong!');
 		$this->form_validation->set_message('numeric','%s harus berupa angka!');
 		$this->form_validation->set_message('valid_email','%s format email tidak valid!');
+		$this->form_validation->set_message('max_length','%s tidak boleh lebih dari 12 digit!');
 		$customer = $this->customer_m;
 		$validation = $this->form_validation;
-		$validation->set_rules($customer->rules());
+		$validation->set_rules($customer->rulesEdit());
 
 		if ($validation->run()) {
 			$post = $this->input->post(null, TRUE);
@@ -66,6 +67,12 @@ class Customer extends CI_Controller {
 				$this->session->set_flashdata('warning', 'Data customer tidak ada yang diupdate!');
 				redirect('customer','refresh');
 			}
+		}else{
+			$data['id']=$id;
+			$data['nopel']=$this->customer_m->CheckNoPel();
+			$data['customer']=$this->customer_m->GetAll();
+			$data['paket']=$this->paket_m->GetAll();
+			$this->template->load('shared/_layout', 'customer/view', $data);
 		}
 
 		$data['cust'] = $this->customer_m->GetById($id);
@@ -73,7 +80,7 @@ class Customer extends CI_Controller {
 			$this->session->set_flashdata('error', 'Data customer tidak ditemukan!');
 			redirect('customer','refresh');
 		}
-		$this->template->load('shared/_layout', 'customer/edit', $data);
+
 	}
 
 	public function delete($id)

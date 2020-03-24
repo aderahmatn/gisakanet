@@ -20,7 +20,6 @@
   <link href="<?= base_url().'assets/vendor/datatables/jquery.dataTables.min.css'?>" rel="stylesheet">
   <link href="<?= base_url().'assets/vendor/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'?>" rel="stylesheet">
   <link href="<?= base_url().'assets/vendor/toastr/toastr.min.css'?>" rel="stylesheet">
-
   <!-- Bootstrap core JavaScript-->
   <script src="<?=base_url().'assets/vendor/jquery/jquery.min.js'?>"></script>
   <script src="<?=base_url().'assets/vendor/bootstrap/js/bootstrap.bundle.min.js'?>"></script>
@@ -222,6 +221,7 @@
         </div>
       </div>
     </div>
+
     <script type="text/javascript">
       $(function() {
         const Toast = Swal.mixin({
@@ -251,7 +251,8 @@
             title: '<?=$this->session->flashdata('info'); ?>'
           });
         <?php } ?>
-});
+          });
+          
         $(document).ready(function() {
           $('#masteruser').DataTable({
             "language":{
