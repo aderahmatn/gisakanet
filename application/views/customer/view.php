@@ -40,7 +40,7 @@
 									<a href="<?=base_url('customer/detail/').encrypt_url($dt->IdPelanggan)?>"><button class="btn btn-circle btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail customer">
 										<i class="fad fa-user-cog"></i>
 									</button></a>
-									<a href="#" class="btn btn-circle btn-sm btn-info" data-toggle="modal" data-placement="bottom" title="Edit customer" data-target="#editModal<?=encrypt_url($dt->IdPelanggan) ?>">
+									<a href="" class="btn btn-circle btn-sm btn-info" data-toggle="modal" data-placement="bottom" title="Edit customer" data-target="#editModal<?=encrypt_url($dt->IdPelanggan) ?>">
 										<i class="fas fa-user-edit"></i>
 									</a>
 									<button onclick="deleteConfirm('<?=base_url('customer/delete/').encrypt_url($dt->IdPelanggan)?>')" href="#!" class="btn btn-circle btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus customer">
