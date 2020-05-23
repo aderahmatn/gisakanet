@@ -30,7 +30,7 @@ class Customer_m extends CI_Model {
 
 			['field' => 'fnohp',
 			'label' => 'No Handphone Pelanggan',
-			'rules' => 'required|numeric|max_length[12]'],
+			'rules' => 'required|numeric|max_length[13]'],
 
 			['field' => 'ftglpasang',
 			'label' => 'Tanggal Pasang',
