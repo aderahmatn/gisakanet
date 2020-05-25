@@ -43,10 +43,6 @@ class Customer_m extends CI_Model {
 			['field' => 'fpaket',
 			'label' => 'Paket Internet',
 			'rules' => 'required'],
-
-			['field' => 'fstatus',
-			'label' => 'Status Pelanggan',
-			'rules' => 'required']
 		];
 	}
 	public function rulesEdit()

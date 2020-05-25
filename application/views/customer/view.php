@@ -213,11 +213,11 @@
 					<div class="form-group col-md-12">
 						<label>Status Pelanggan</label>
 						<div class="custom-control custom-radio">
-							<input type="radio" id="fstatus1" name="fstatus" class="custom-control-input <?php echo form_error('fstatus')?'is-invalid':''?>" value="1" <?=set_value('fstatus') == "1" ? "checked" : ''?>>
+							<input type="radio" id="fstatus1" name="fstatus" class="custom-control-input <?php echo form_error('fstatus')?'is-invalid':''?>" value="1" checked>
 							<label class="custom-control-label" for="fstatus1"><span class="badge badge-success">Aktif</span></label>
 						</div>
 						<div class="custom-control custom-radio">
-							<input type="radio" id="fstatus2" name="fstatus" class="custom-control-input <?php echo form_error('fstatus')?'is-invalid':''?>" value="0" <?=set_value('fstatus') == "0" ? "checked" : ''?>>
+							<input type="radio" id="fstatus2" name="fstatus" class="custom-control-input <?php echo form_error('fstatus')?'is-invalid':''?>" value="0" >
 							<label class="custom-control-label" for="fstatus2"><span class="badge badge-danger">Nonaktif</span></label>
 							<div class="invalid-feedback">
 								<?php echo form_error('fstatus'); ?>
