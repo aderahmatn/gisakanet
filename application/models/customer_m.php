@@ -15,6 +15,9 @@ class Customer_m extends CI_Model {
 	public $TglPasang;
 	public $Status;
 	public $NoUrut;
+	public $IdArea;
+	public $PPPOE;
+	public $Password_PPPOE;
 
 	public function rules()
 	{
@@ -43,6 +46,18 @@ class Customer_m extends CI_Model {
 			['field' => 'fpaket',
 			'label' => 'Paket Internet',
 			'rules' => 'required'],
+
+			['field' => 'farea',
+			'label' => 'Area',
+			'rules' => 'required'],
+
+			['field' => 'fpppoe',
+			'label' => 'ID PPPOE',
+			'rules' => 'required|min_length[4]'],
+
+			['field' => 'fpwdpppoe',
+			'label' => 'Password PPPOE',
+			'rules' => 'required|min_length[4]'],
 		];
 	}
 	public function rulesEdit()
@@ -71,13 +86,31 @@ class Customer_m extends CI_Model {
 
 			['field' => 'fstatusedit',
 			'label' => 'Status Pelanggan',
-			'rules' => 'required']
+			'rules' => 'required'],
+
+			['field' => 'fareaedit',
+			'label' => 'Area',
+			'rules' => 'required'],
+
+			['field' => 'fpppoeedit',
+			'label' => 'ID PPPOE',
+			'rules' => 'required|min_length[4]'],
+
+			['field' => 'fpasswordpppoeedit',
+			'label' => 'Password PPPOE',
+			'rules' => 'required|min_length[4]'],
 		];
 	}
 
 	public function GetAll()
 	{
-		return $this->db->get($this->_table)->result();
+		$this->db->select('*');
+    $this->db->from('Pelanggan');
+		$this->db->join('Area', 'Pelanggan.IdArea = Area.IdArea', 'left');
+    $query = $this->db->get();
+		return $query->result();
+		
+
 	}
 	public function add()
 	{
@@ -95,6 +128,9 @@ class Customer_m extends CI_Model {
 		$this->IdPaket = $post['fpaket'];
 		$this->TglPasang = $post['ftglpasang'];
 		$this->Status = $post['fstatus'];
+		$this->IdArea = $post['farea'];
+		$this->PPPOE = $post['fpppoe'];
+		$this->Password_PPPOE = $post['fpwdpppoe'];
 		$this->db->insert($this->_table, $this);
 	}
 
@@ -121,6 +157,9 @@ class Customer_m extends CI_Model {
 		$this->IdPaket = $post['fpaketedit'];
 		$this->TglPasang = $post['ftglpasangedit'];
 		$this->Status = $post['fstatusedit'];
+		$this->IdArea = $post['fareaedit'];
+		$this->PPPOE = $post['fpppoeedit'];
+		$this->Password_PPPOE = $post['fpasswordpppoeedit'];
 		$this->db->update($this->_table, $this, array('IdPelanggan' => decrypt_url($post['fidpel'])));
 	}
 

@@ -67,8 +67,8 @@
           <i class="fad fa-users"></i>
           <span>Customers</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <li class="nav-item <?= $this->uri->segment(1) == 'billing' ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url('billing') ?>">
           <i class="fad fa-cash-register"></i>
           <span>Billing</span></a>
       </li>

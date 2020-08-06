@@ -9,6 +9,7 @@ class Customer extends CI_Controller
 		check_not_login();
 		$this->load->model('customer_m');
 		$this->load->model('paket_m');
+		$this->load->model('area_m');
 	}
 
 	public function index($id = NULL)
@@ -16,6 +17,7 @@ class Customer extends CI_Controller
 
 		$data['nopel'] = $this->customer_m->CheckNoPel();
 		$data['paket'] = $this->paket_m->GetAll();
+		$data['area'] = $this->area_m->GetAll();
 		$data['customer'] = $this->customer_m->GetAll();
 		$this->template->load('shared/_layout', 'customer/view', $data);
 	}
@@ -34,6 +36,7 @@ class Customer extends CI_Controller
 			$data['nopel'] = $this->customer_m->CheckNoPel();
 			$data['customer'] = $this->customer_m->GetAll();
 			$data['paket'] = $this->paket_m->GetAll();
+			$data['area'] = $this->area_m->GetAll();
 			$this->template->load('shared/_layout', 'customer/view', $data);
 		} else {
 			$post = $this->input->post(null, TRUE);
@@ -71,6 +74,7 @@ class Customer extends CI_Controller
 			$data['nopel'] = $this->customer_m->CheckNoPel();
 			$data['customer'] = $this->customer_m->GetAll();
 			$data['paket'] = $this->paket_m->GetAll();
+			$data['area'] = $this->area_m->GetAll();
 			$this->template->load('shared/_layout', 'customer/view', $data);
 		}
 
