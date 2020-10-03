@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Paket_m extends CI_Model {
+class Paket_m extends CI_Model
+{
 
 	private $_table = "paket";
 
@@ -13,41 +14,57 @@ class Paket_m extends CI_Model {
 	public function rules()
 	{
 		return [
-			['field' => 'fkodepaket',
-			'label' => 'Kode Paket',
-			'rules' => 'required',],
+			[
+				'field' => 'fkodepaket',
+				'label' => 'Kode Paket',
+				'rules' => 'required',
+			],
 
-			['field' => 'fnamapaket',
-			'label' => 'Nama Paket',
-			'rules' => 'required|min_length[3]',],
+			[
+				'field' => 'fnamapaket',
+				'label' => 'Nama Paket',
+				'rules' => 'required|min_length[3]',
+			],
 
-			['field' => 'ftipeakses',
-			'label' => 'Tipe Akses Paket',
-			'rules' => 'required',],
+			[
+				'field' => 'ftipeakses',
+				'label' => 'Tipe Akses Paket',
+				'rules' => 'required',
+			],
 
-			['field' => 'fhargapaket',
-			'label' => 'Harga Paket',
-			'rules' => 'required|numeric',]
+			[
+				'field' => 'fhargapaket',
+				'label' => 'Harga Paket',
+				'rules' => 'required|numeric',
+			]
 		];
 	}
 	public function rulesEdit()
 	{
 		return [
-			['field' => 'fkodepaketedit',
-			'label' => 'Kode Paket',
-			'rules' => 'required',],
+			[
+				'field' => 'fkodepaketedit',
+				'label' => 'Kode Paket',
+				'rules' => 'required',
+			],
 
-			['field' => 'fnamapaketedit',
-			'label' => 'Nama Paket',
-			'rules' => 'required|min_length[3]',],
+			[
+				'field' => 'fnamapaketedit',
+				'label' => 'Nama Paket',
+				'rules' => 'required|min_length[3]',
+			],
 
-			['field' => 'ftipeaksesedit',
-			'label' => 'Tipe Akses Paket',
-			'rules' => 'required',],
+			[
+				'field' => 'ftipeaksesedit',
+				'label' => 'Tipe Akses Paket',
+				'rules' => 'required',
+			],
 
-			['field' => 'fhargapaketedit',
-			'label' => 'Harga Paket',
-			'rules' => 'required|numeric',]
+			[
+				'field' => 'fhargapaketedit',
+				'label' => 'Harga Paket',
+				'rules' => 'required|numeric',
+			]
 		];
 	}
 
@@ -55,7 +72,7 @@ class Paket_m extends CI_Model {
 	{
 		return $this->db->get($this->_table)->result();
 	}
-	
+
 	public function add()
 	{
 		$post = $this->security->xss_clean($this->input->post());
@@ -78,13 +95,12 @@ class Paket_m extends CI_Model {
 
 	public function GetById($id)
 	{
-		return $this->db->get_where($this->_table,["IdPaket" => decrypt_url($id)])->row();
+		return $this->db->get_where($this->_table, ["IdPaket" => decrypt_url($id)])->row();
 	}
 	public function delete($id)
 	{
-		return $this->db->delete($this->_table, array('IdPaket' => $id ));
+		return $this->db->delete($this->_table, array('IdPaket' => $id));
 	}
-
 }
 
 /* End of file paket_m.php */

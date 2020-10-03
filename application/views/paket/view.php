@@ -21,6 +21,12 @@
 					</thead>
 					<tbody>
 						<?php
+						if ($paket == NULL) : ?>
+							<tr>
+								<td colspan="6" class="text-center">tidak ada data paket</td>
+							</tr>
+						<?php endif ?>
+						<?php
 						$no = 1;
 						foreach ($paket as $dt) : ?>
 							<tr>
@@ -28,7 +34,7 @@
 								<td><?= strtoupper($dt->IdPaket) ?></td>
 								<td><?= strtoupper($dt->NamaPaket) ?></td>
 								<td><?= strtoupper($dt->TipeAkses) ?></td>
-								<td><?= strtoupper($dt->HargaPaket) ?></td>
+								<td><?= rupiah(strtoupper($dt->HargaPaket)) ?></td>
 								<td>
 									<a href="" class="btn btn-circle btn-sm btn-info" data-toggle="modal" data-placement="bottom" title="Edit paket" data-target="#editModal<?= encrypt_url($dt->IdPaket) ?>">
 										<i class="fas fa-edit"></i>
@@ -71,9 +77,14 @@
 												</div>
 												<div class="form-group">
 													<label for="fhargapaketedit">Harga</label>
-													<input type="text" class="form-control <?= form_error('fhargapaketedit') ? 'is-invalid' : '' ?>" id="fhargapaketedit" name="fhargapaketedit" value="<?= $this->input->post('fhargapaketedit') ? $this->input->post('fhargapaketedit') : $dt->HargaPaket ?>" autocomplete="off">
-													<div class="invalid-feedback">
-														<?= form_error('fhargapaketedit'); ?>
+													<div class="input-group">
+														<div class="input-group-prepend">
+															<div class="input-group-text">Rp</div>
+														</div>
+														<input type="text" class="form-control <?= form_error('fhargapaketedit') ? 'is-invalid' : '' ?> harga" id="fhargapaketedit" name="fhargapaketedit" value="<?= $this->input->post('fhargapaketedit') ? $this->input->post('fhargapaketedit') : $dt->HargaPaket ?>" autocomplete="off">
+														<div class="invalid-feedback">
+															<?= form_error('fhargapaketedit'); ?>
+														</div>
 													</div>
 												</div>
 										</div>
@@ -85,7 +96,7 @@
 									</div>
 								</div>
 							</div>
-				</div>
+			</div>
 		<?php endforeach ?>
 		</tbody>
 		</table>
@@ -105,7 +116,7 @@
 				<input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 				<div class="form-group">
 					<label for="fkodepaket">Kode Paket</label>
-					<input type="text" class="form-control <?= form_error('fkodepaket') ? 'is-invalid' : '' ?>" id="fkodepaket" name="fkodepaket" value="<?= set_value('fkodepaket') ?>" autocomplete="off">
+					<input type="text" class="form-control <?= form_error('fkodepaket') ? 'is-invalid' : '' ?>" id="fkodepaket" name="fkodepaket" value="<?= set_value('fkodepaket') ?>" autocomplete="off" autofocus>
 					<div class="invalid-feedback">
 						<?= form_error('fkodepaket'); ?>
 					</div>
@@ -126,9 +137,14 @@
 				</div>
 				<div class="form-group">
 					<label for="fhargapaket">Harga</label>
-					<input type="text" class="form-control <?= form_error('fhargapaket') ? 'is-invalid' : '' ?>" id="fhargapaket" name="fhargapaket" value="<?= set_value('fhargapaket') ?>" autocomplete="off">
-					<div class="invalid-feedback">
-						<?= form_error('fhargapaket'); ?>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<div class="input-group-text">Rp</div>
+						</div>
+						<input type="text" class="form-control <?= form_error('fhargapaket') ? 'is-invalid' : '' ?>" id="fhargapaket" name="fhargapaket" value="<?= set_value('fhargapaket') ?>" autocomplete="off">
+						<div class="invalid-feedback">
+							<?= form_error('fhargapaket'); ?>
+						</div>
 					</div>
 				</div>
 		</div>
@@ -148,3 +164,14 @@ if ($this->uri->segment(2) == 'update') { ?>
 		});
 	</script>
 <?php } ?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#fhargapaket").mask('000.000.000', {
+			reverse: true
+		});
+		$(".harga").mask('000.000.000', {
+			reverse: true
+		});
+
+	})
+</script>

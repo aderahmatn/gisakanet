@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Customer_m extends CI_Model {
+class Customer_m extends CI_Model
+{
 
 	private $_table = "pelanggan";
 
@@ -21,106 +22,140 @@ class Customer_m extends CI_Model {
 
 	public function rules()
 	{
-		return[
+		return [
 
-			['field' => 'fnamapelanggan',
-			'label' => 'Nama Pelanggan',
-			'rules' => 'required'],
+			[
+				'field' => 'fnamapelanggan',
+				'label' => 'Nama Pelanggan',
+				'rules' => 'required'
+			],
 
-			['field' => 'femail',
-			'label' => 'Email Pelanggan',
-			'rules' => 'required|valid_email'],
+			[
+				'field' => 'femail',
+				'label' => 'Email Pelanggan',
+				'rules' => 'required|valid_email'
+			],
 
-			['field' => 'fnohp',
-			'label' => 'No Handphone Pelanggan',
-			'rules' => 'required|numeric|max_length[13]'],
+			[
+				'field' => 'fnohp',
+				'label' => 'No Handphone Pelanggan',
+				'rules' => 'required|numeric|max_length[13]'
+			],
 
-			['field' => 'ftglpasang',
-			'label' => 'Tanggal Pasang',
-			'rules' => 'required'],
+			[
+				'field' => 'ftglpasang',
+				'label' => 'Tanggal Pasang',
+				'rules' => 'required'
+			],
 
-			['field' => 'falamat',
-			'label' => 'Alamat Pelanggan',
-			'rules' => 'required'],
+			[
+				'field' => 'falamat',
+				'label' => 'Alamat Pelanggan',
+				'rules' => 'required'
+			],
 
-			['field' => 'fpaket',
-			'label' => 'Paket Internet',
-			'rules' => 'required'],
+			[
+				'field' => 'fpaket',
+				'label' => 'Paket Internet',
+				'rules' => 'required'
+			],
 
-			['field' => 'farea',
-			'label' => 'Area',
-			'rules' => 'required'],
+			[
+				'field' => 'farea',
+				'label' => 'Area',
+				'rules' => 'required'
+			],
 
-			['field' => 'fpppoe',
-			'label' => 'ID PPPOE',
-			'rules' => 'required|min_length[4]'],
+			[
+				'field' => 'fpppoe',
+				'label' => 'ID PPPOE',
+				'rules' => 'required|min_length[4]'
+			],
 
-			['field' => 'fpwdpppoe',
-			'label' => 'Password PPPOE',
-			'rules' => 'required|min_length[4]'],
+			[
+				'field' => 'fpwdpppoe',
+				'label' => 'Password PPPOE',
+				'rules' => 'required|min_length[4]'
+			],
 		];
 	}
 	public function rulesEdit()
 	{
-		return[
+		return [
 
-			['field' => 'fnamapelangganedit',
-			'label' => 'Nama Pelanggan',
-			'rules' => 'required'],
+			[
+				'field' => 'fnamapelangganedit',
+				'label' => 'Nama Pelanggan',
+				'rules' => 'required'
+			],
 
-			['field' => 'femailedit',
-			'label' => 'Email Pelanggan',
-			'rules' => 'required|valid_email'],
+			[
+				'field' => 'femailedit',
+				'label' => 'Email Pelanggan',
+				'rules' => 'required|valid_email'
+			],
 
-			['field' => 'fnohpedit',
-			'label' => 'No Handphone Pelanggan',
-			'rules' => 'required|numeric|max_length[12]'],
+			[
+				'field' => 'fnohpedit',
+				'label' => 'No Handphone Pelanggan',
+				'rules' => 'required|numeric|max_length[12]'
+			],
 
-			['field' => 'falamatedit',
-			'label' => 'Alamat Pelanggan',
-			'rules' => 'required'],
+			[
+				'field' => 'falamatedit',
+				'label' => 'Alamat Pelanggan',
+				'rules' => 'required'
+			],
 
-			['field' => 'fpaketedit',
-			'label' => 'Paket Internet',
-			'rules' => 'required'],
+			[
+				'field' => 'fpaketedit',
+				'label' => 'Paket Internet',
+				'rules' => 'required'
+			],
 
-			['field' => 'fstatusedit',
-			'label' => 'Status Pelanggan',
-			'rules' => 'required'],
+			[
+				'field' => 'fstatusedit',
+				'label' => 'Status Pelanggan',
+				'rules' => 'required'
+			],
 
-			['field' => 'fareaedit',
-			'label' => 'Area',
-			'rules' => 'required'],
+			[
+				'field' => 'fareaedit',
+				'label' => 'Area',
+				'rules' => 'required'
+			],
 
-			['field' => 'fpppoeedit',
-			'label' => 'ID PPPOE',
-			'rules' => 'required|min_length[4]'],
+			[
+				'field' => 'fpppoeedit',
+				'label' => 'ID PPPOE',
+				'rules' => 'required|min_length[4]'
+			],
 
-			['field' => 'fpasswordpppoeedit',
-			'label' => 'Password PPPOE',
-			'rules' => 'required|min_length[4]'],
+			[
+				'field' => 'fpasswordpppoeedit',
+				'label' => 'Password PPPOE',
+				'rules' => 'required|min_length[4]'
+			],
 		];
 	}
 
 	public function GetAll()
 	{
 		$this->db->select('*');
-    $this->db->from('Pelanggan');
+		$this->db->from('Pelanggan');
 		$this->db->join('Area', 'Pelanggan.IdArea = Area.IdArea', 'left');
-    $query = $this->db->get();
+		$query = $this->db->get();
 		return $query->result();
-		
-
 	}
 	public function add()
 	{
 		$post = $this->security->xss_clean($this->input->post());
-		$tglpasang=explode("-",$post['ftglpasang']);
-		$nopel1=$tglpasang['0'];
-		$nopel2=$tglpasang['1'];
+		$tglpasang = explode("-", $post['ftglpasang']);
+		$nopel1 = $tglpasang['0'];
+		$nopel2 = $tglpasang['1'];
 		$this->IdPelanggan = uniqid('CS');
 		$this->NoUrut = $post['fnourut'];
-		$this->NoPelanggan = $nopel1.$nopel2.$post['fnourut'];
+		$this->NoPelanggan = $nopel1 . $nopel2 . $post['fnourut'];
 		$this->NamaPelanggan = $post['fnamapelanggan'];
 		$this->AlamatPelanggan = $post['falamat'];
 		$this->TelponPelanggan = $post['fnohp'];
@@ -165,15 +200,13 @@ class Customer_m extends CI_Model {
 
 	public function GetById($id)
 	{
-		return $this->db->get_where($this->_table,["IdPelanggan" => decrypt_url($id)])->row();
+		return $this->db->get_where($this->_table, ["IdPelanggan" => decrypt_url($id)])->row();
 	}
 
 	public function delete($id)
 	{
-		return $this->db->delete($this->_table, array('IdPelanggan' => $id ));
+		return $this->db->delete($this->_table, array('IdPelanggan' => $id));
 	}
-
-
 }
 
 /* End of file customer_m.php */

@@ -23,7 +23,7 @@
   <!-- Bootstrap core JavaScript-->
   <script src="<?= base_url() . 'assets/vendor/jquery/jquery.min.js' ?>"></script>
   <script src="<?= base_url() . 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' ?>"></script>
-
+  <script src="<?= base_url() . 'assets/vendor/jquery/jquery.mask.min.js' ?>"></script>
 
 </head>
 
@@ -68,7 +68,7 @@
           <span>Customers</span></a>
       </li>
       <li class="nav-item <?= $this->uri->segment(1) == 'billing' ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= base_url('billing') ?>">
+        <a class="nav-link" href="<?= base_url('billing')  ?>">
           <i class="fad fa-cash-register"></i>
           <span>Billing</span></a>
       </li>
@@ -109,8 +109,8 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-900 small"><?= ucwords($this->session->userdata('name'));?></span>
-                <img class="img-profile rounded-circle" src="<?=$this->session->userdata('url')?>">
+                <span class="mr-2 d-none d-lg-inline text-gray-900 small"><?= ucwords($this->session->userdata('name')); ?></span>
+                <img class="img-profile rounded-circle" src="<?= $this->session->userdata('url') ?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -172,7 +172,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="<?=base_url('auth/logout')?>">Logout</a>
+          <a class="btn btn-primary" href="<?= base_url('auth/logout') ?>">Logout</a>
         </div>
       </div>
     </div>
@@ -243,9 +243,22 @@
 
   $(document).ready(function() {
     $('#masteruser').DataTable({
+      "bPaginate": false,
+      "info": false,
+      "scrollY": 300,
       "language": {
         "url": "<?php echo base_url() . 'assets/vendor/datatables/Indonesia.json' ?>",
-        "sEmptyTable": "Tidak ada data"
+        "sEmptyTable": "Tidak ada data",
+      }
+    });
+    $('#billings').DataTable({
+      "bPaginate": false,
+      "scrollY": 300,
+      "scrollX": true,
+      "info": false,
+      "language": {
+        "url": "<?php echo base_url() . 'assets/vendor/datatables/Indonesia.json' ?>",
+        "sEmptyTable": "Tidak ada data",
       }
     });
   });
